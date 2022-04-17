@@ -23,7 +23,8 @@ import torch
 import torch.nn as nn
 import numpy as np
 from torch.utils.data import RandomSampler, DataLoader, SequentialSampler
-from tqdm import trange, tqdm
+# from tqdm import trange, tqdm
+from tqdm.notebook import trange, tqdm
 from transformers import InputExample, AdamW, get_linear_schedule_with_warmup, PreTrainedTokenizer, BertForMaskedLM, \
     RobertaForMaskedLM, XLMRobertaForMaskedLM, XLNetConfig, XLNetForSequenceClassification, XLNetTokenizer, \
     XLNetLMHeadModel, BertConfig, BertForSequenceClassification, BertTokenizer, RobertaConfig, \
@@ -426,8 +427,9 @@ class TransformerModelWrapper:
                 self.task_helper.add_special_input_features(example, input_features)
             features.append(input_features)
             if ex_index < 5:
-                logger.info(f'--- Example {ex_index} ---')
-                logger.info(input_features.pretty_print(self.tokenizer))
+#                 logger.info(f'--- Example {ex_index} ---')
+#                 logger.info(input_features.pretty_print(self.tokenizer))
+                pass
         return features
 
     def _mask_tokens(self, input_ids):
